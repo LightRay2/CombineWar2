@@ -778,7 +778,12 @@ namespace Game2D.Game
         void MineExplosion(ref State state, Mine mine, Player enemyPlayer)
         {
             Effect pr = new Effect();
-            pr.AddNextStep(new DynamicObject(new Sprite(ESprite.explosionNuclear, 5 * Const.TileWidth, 5 * Const.TileHeight, new Vector2(mine.obj.objs[0].Pos.x, 
+
+            //todo denis
+            // надо при взрыве бомбы рисовать следующую строку. Там будет меняться последний параметр альфа. Он сначала увеличивается от 0 до 1 (до половины времени), затем уменьшается до 0
+            //Animator.Rectangle(ref frame, ESprite.explosionPoint, mine.obj.objs[0].Pos.x - Const.TileWidth * 2.5, mine.obj.objs[0].Pos.y - Const.TileHeight * 2.5, Const.TileWidth * 5, Const.TileHeight * 5, alpha);
+
+            pr.AddNextStep(new DynamicObject(new Sprite(ESprite.explosionNuclear, 5 * Const.TileWidth*1.7791, 5 * Const.TileHeight, new Vector2(mine.obj.objs[0].Pos.x, 
                                                                                                                                   mine.obj.objs[0].Pos.y))));
             pr.AddAnimationToLastStep(0, 0, 0, 2.0);
             state.effects.AddEffect(pr);

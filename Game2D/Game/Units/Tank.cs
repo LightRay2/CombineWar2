@@ -36,7 +36,7 @@ namespace Game2D.Game.Units
             }
             Vector2 ps = new Vector2(Const.FieldOriginX + Const.TileWidth * (position + 0.5),
                                      Const.FieldOriginY + Const.TileHeight * (line + 0.5));
-            obj.objs.Add(new DynamicObject(new Sprite(hull, Width, Height, ps)));
+            obj.objs.Add(new DynamicObject(new Sprite(hull, Width, Height, ps)  ));
             obj.objs.Add(new DynamicObject(new Sprite(turret, TurretWidth, TurretHeight, ps)));
         }
     }

@@ -26,6 +26,7 @@ namespace Game2D
         /// <param name="pos">Где находится спрайт и угол поворота</param>
         public Sprite(ESprite name, double width, double height, Vector2 pos, int frame=0)
         {
+            _alpha = 1;
             if (name != ESprite.end)
                 this.frameCount = Config.Sprites[name.ToString()].horFrames *
                                   Config.Sprites[name.ToString()].vertFrames;
@@ -39,5 +40,7 @@ namespace Game2D
             this.texture = name.ToString();
         }
 
+        double _alpha;
+        public double Alpha { get { return _alpha; } set { if (value > 1) value = 1; if (value < 0) value = 0; _alpha = value; } }
     }
 }

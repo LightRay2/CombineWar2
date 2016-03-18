@@ -417,12 +417,38 @@ namespace Game2D.Game
         void FastGameInSecondThread()
         {
             var state = _currentStateInSecondThread;
+            int turnWithExceptionCount = 0;
             while (!state.IsFinished)
             {
 
                 Turn firstPlayerTurn = GetTurnFromProgramExecuter(state, state.players[0]);
+                if (firstPlayerTurn != null && firstPlayerTurn.TurnStatus == ExternalProgramExecuteResult.InternalError)
+                    turnWithExceptionCount++;
                 Turn secondPlayerTurn = GetTurnFromProgramExecuter(state, state.players[1]);
-                
+
+                if (secondPlayerTurn != null && secondPlayerTurn.TurnStatus == ExternalProgramExecuteResult.InternalError)
+                    turnWithExceptionCount++;
+
+                bool stopGame = false;
+                if (turnWithExceptionCount >= 2)
+                {
+                    
+                   var dialogResult =  MessageBox.Show("Внешняя программа несколько раз завершилась с ошибкой. Выберите: остановить, продолжить до следующей ошибки, продолжить до конца игры", "Внимание", MessageBoxButtons.YesNoCancel);
+                   if (dialogResult == DialogResult.Yes)
+                   {
+                       turnWithExceptionCount = 1;
+                   }
+                   else if (dialogResult == DialogResult.No)
+                   {
+                       stopGame = true;
+                   }
+                   else
+                   {
+                       turnWithExceptionCount = -1000000;
+                   }
+                }
+
+
                 
 
                 SimultaneousTurn turn = new SimultaneousTurn();
@@ -433,7 +459,7 @@ namespace Game2D.Game
                 _engine.DoTurn(ref state, turn);
                 recordedTurns.TryAdd(state.turn, turn);
                 state.turn++;
-                if (state.turn == Const.NumberOfTurns)
+                if (state.turn == Const.NumberOfTurns || stopGame)
                     state.IsFinished = true;
             }
 

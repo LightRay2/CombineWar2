@@ -103,7 +103,7 @@ namespace MagicStorm
             if (gameList.Count > 0)
             {
                 Const.ParamsFromMainFormToGame = gameList;
-                new Form1().ShowDialog();
+                new GameForm().ShowDialog();
             }
         }
 
@@ -242,6 +242,7 @@ namespace MagicStorm
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
             lblTime.Text = (trackBar1.Value * 10).ToString() + "%";
+            SaveConfig();
         }
 
         private void button2_Click(object sender, EventArgs e)

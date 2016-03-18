@@ -217,13 +217,13 @@ namespace Game2D.Game
             Rectangle(ref frame,  ESprite.gridPoint,x,y,w,h);
             }
 
-        public static void Rectangle(ref Frame frame, ESprite sprite, double x, double y, double w, double h)
+        public static void Rectangle(ref Frame frame, ESprite sprite, double x, double y, double w, double h, double alpha=1)
         {
             double pointSz = Const.TileHeight / 15;
-            frame.Add(new Sprite(sprite, w, pointSz, new Vector2(x + w / 2, y)));
-            frame.Add(new Sprite(sprite, pointSz, h, new Vector2(x, y + h / 2)));
-            frame.Add(new Sprite(sprite, w, pointSz, new Vector2(x + w / 2, y + h)));
-            frame.Add(new Sprite(sprite, pointSz, h, new Vector2(x + w, y + h / 2)));
+            frame.Add(new Sprite(sprite, w, pointSz, new Vector2(x + w / 2, y) ){ Alpha= alpha });
+            frame.Add(new Sprite(sprite, pointSz, h, new Vector2(x, y + h / 2)) { Alpha = alpha });
+            frame.Add(new Sprite(sprite, w, pointSz, new Vector2(x + w / 2, y + h)) { Alpha = alpha });
+            frame.Add(new Sprite(sprite, pointSz, h, new Vector2(x + w, y + h / 2)) { Alpha = alpha });
        
         }
 

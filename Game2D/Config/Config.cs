@@ -8,20 +8,24 @@ namespace Game2D
 {
     //вынесены для краткости кода
     //Доступные спрайты. end - чтобы можно было легко пробежать по всем
-    public enum ESprite { test, background, shell1, smallBack, tank, stoneTest,
-                          background_field, background_cell,
-                          green_hull, red_hull,
-                          green_turret, red_turret,
-                          green_armored, red_armored,
-                          green_combine, red_combine,
-                          green_cannon, red_cannon,
-                          green_mine, red_mine,
+    public enum ESprite
+    {
+        test, background, shell1, smallBack, tank, stoneTest,
+        background_field, background_cell,
+        green_hull, red_hull,
+        green_turret, red_turret,
+        green_armored, red_armored,
+        green_combine, red_combine,
+        green_cannon, red_cannon,
+        green_mine, red_mine,
 
-                          tankBox, tankGun, cannonBox, cannonGun, armoBox, armoGun, combine, car,
-                          tankBox2, tankGun2, cannonBox2, cannonGun2, armoBox2, armoGun2, combine2, car2,
-                        gridPoint,gridPoint2,gridPoint1,
-                          explosion, explosionBig, explosionSmall, explosionOut,explosionNuclear, stone,active1, active2,
-                          end }
+        tankBox, tankGun, cannonBox, cannonGun, armoBox, armoGun, combine, car,
+        tankBox2, tankGun2, cannonBox2, cannonGun2, armoBox2, armoGun2, combine2, car2,
+        gridPoint, gridPoint2, gridPoint1,
+        explosionPoint,
+        explosion, explosionBig, explosionSmall, explosionOut, explosionNuclear, stone, active1, active2,
+        end
+    }
     public enum EFont { blue, blueSmall, orange, fiolBright, fiol, gold, greenBright, green, greenSmall, red, end }
     
     //действия, которые поддерживает клавиатура. Должны быть привязаны конкретные кнопки в конструкторе
@@ -92,6 +96,7 @@ namespace Game2D
             Sprites.Add(ESprite.gridPoint.ToString(), new SpriteConfig("textures//gridPoint.png", 1, 1,-100));
             Sprites.Add(ESprite.gridPoint2.ToString(), new SpriteConfig("textures//gridPoint1.png", 1, 1,-100));
             Sprites.Add(ESprite.gridPoint1.ToString(), new SpriteConfig("textures//gridPoint2.png", 1, 1,-100));
+            Sprites.Add(ESprite.explosionPoint.ToString(), new SpriteConfig("textures//explosionPoint.png", 1, 1, 0));
 
             Sprites.Add(ESprite.stone.ToString(), new SpriteConfig("textures//main//effect3.png", 8, 4,-1));
             Sprites.Add(ESprite.explosionBig.ToString(), new SpriteConfig("textures//main//explosion6-7.png", 7, 6,20));
