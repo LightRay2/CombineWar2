@@ -1,1 +1,16 @@
 W:\Dropbox\Denis\CombineWar2\Game2D\bin\Release\Game2D.exe.config
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Release\Game2D.exe.config
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Release\Game2D.exe
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Release\Game2D.pdb
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Release\OpenTK.dll
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Release\OpenTK.GLControl.dll
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Release\OpenTK.pdb
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Release\OpenTK.xml
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Release\OpenTK.GLControl.xml
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Release\MagicStorm.FormMain.resources
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Release\Game2D.GameForm.resources
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Release\Game2D.Properties.Resources.resources
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Release\Game2D.csproj.GenerateResource.Cache
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Release\Game2D.exe
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Release\Game2D.pdb
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Release\Game2D.csprojResolveAssemblyReference.cache

@@ -53,26 +53,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tao.DevIl, Version=1.6.8.3, Culture=neutral, PublicKeyToken=7ec4053013524957, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Tao.DevIl.dll</HintPath>
-    </Reference>
-    <Reference Include="Tao.FreeGlut, Version=2.4.0.2, Culture=neutral, PublicKeyToken=6e602a6ad6c0d06d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Tao.FreeGlut.dll</HintPath>
-    </Reference>
-    <Reference Include="Tao.FreeType, Version=2.3.5.0, Culture=neutral, PublicKeyToken=e499629dc69cd531, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Tao.FreeType.dll</HintPath>
-    </Reference>
-    <Reference Include="Tao.OpenGl, Version=2.1.0.12, Culture=neutral, PublicKeyToken=1ca010269a4501ef, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Tao.OpenGl.dll</HintPath>
-    </Reference>
-    <Reference Include="Tao.Platform.Windows, Version=1.0.0.5, Culture=neutral, PublicKeyToken=701104b2da67a104, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Tao.Platform.Windows.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Animator.cs" />
@@ -107,27 +87,18 @@
     <Compile Include="Game\Units\Tank.cs" />
     <Compile Include="Game\Units\Unit.cs" />
     <Compile Include="Game\Utility.cs" />
-    <Compile Include="OpenglFramework\FormMain.cs">
+    <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OpenglFramework\FormMain.designer.cs">
+    <Compile Include="FormMain.designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpenglFramework\IGame.cs" />
-    <Compile Include="OpenglFramework\IGetKeyboardState.cs" />
+    <Compile Include="OpenGL\IGame.cs" />
+    <Compile Include="OpenGL\IGetKeyboardState.cs" />
     <Compile Include="Game\Game.cs" />
-    <Compile Include="Config\Config.cs" />
-    <Compile Include="OpenglFramework\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OpenglFramework\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OpenglFramework\KeyboardState.cs" />
-    <Compile Include="OpenglFramework\MainController.cs" />
-    <Compile Include="OpenglFramework\OpenglInitializer.cs" />
-    <Compile Include="OpenglFramework\Painter.cs" />
-    <Compile Include="OpenglFramework\Program.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="OpenGL\KeyboardState.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="OpenGL\FramePainter.cs" />
     <Compile Include="OpenGL\GameController.cs" />
     <Compile Include="OpenGL\GameForm.cs">
@@ -144,10 +115,7 @@
     <Compile Include="Struct\Sprite.cs" />
     <Compile Include="Struct\Text.cs" />
     <Compile Include="Struct\Vector2.cs" />
-    <EmbeddedResource Include="OpenglFramework\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OpenglFramework\FormMain.resx">
+    <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OpenGL\GameForm.resx">

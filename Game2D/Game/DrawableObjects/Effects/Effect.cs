@@ -28,9 +28,24 @@ namespace Game2D.Game.DrawableObjects.Effects
                 if (!Utility.doubleEqual(lastPos.x, -1))
                     currAnim.Pos = lastPos;
             }
+            
             if (Utility.doubleGreaterOrEqual(stage, currAnim.GetAnimationsStart()))
             {
                 currAnim.Draw(ref frame, stage, turnNumber);
+            }
+            if (currAnim.CurrentSprite == ESprite.explosionNuclear && !currAnim.IsAnimationsFinished())
+            {
+                double pointSz = Const.TileHeight / 15;
+                ESprite sprite = ESprite.explosionPoint;
+                double x = currAnim.Pos.x - Const.TileWidth * 2.5;
+                double y = currAnim.Pos.y - Const.TileHeight * 2.5;
+                double w = Const.TileWidth * 5;
+                double h = Const.TileHeight * 5;
+                double alpha = -2 * Math.Pow((currAnim.CurrentInnerStage - 0.5), 2) + 1;
+                frame.Add(new Sprite(sprite, w, pointSz, new Vector2(x + w / 2, y)) { Alpha = alpha });
+                frame.Add(new Sprite(sprite, pointSz, h, new Vector2(x, y + h / 2)) { Alpha = alpha });
+                frame.Add(new Sprite(sprite, w, pointSz, new Vector2(x + w / 2, y + h)) { Alpha = alpha });
+                frame.Add(new Sprite(sprite, pointSz, h, new Vector2(x + w, y + h / 2)) { Alpha = alpha });
             }
             if (currAnim.IsAnimationsFinished())
             {

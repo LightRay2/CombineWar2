@@ -78,7 +78,6 @@ C:\Users\Brandstein\Documents\Visual Studio 2013\Projects\CombineWar\Game2D\obj\
 C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\Game2D.exe.config
 C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.exe
 C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.pdb
-C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.Form1.resources
 C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.Properties.Resources.resources
 C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.csproj.GenerateResource.Cache
 C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\Game2D.exe
@@ -130,7 +129,6 @@ C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\MagicStorm.Fo
 C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\Game2D.exe
 C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\Game2D.pdb
 C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.csprojResolveAssemblyReference.cache
-C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.Form1.resources
 C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\MagicStorm.FormMain.resources
 C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.Properties.Resources.resources
 C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.csproj.GenerateResource.Cache
@@ -160,3 +158,15 @@ D:\misha\_PROJECTS\CombineWar2\Game2D\bin\Debug\OpenTK.GLControl.dll
 D:\misha\_PROJECTS\CombineWar2\Game2D\bin\Debug\OpenTK.pdb
 D:\misha\_PROJECTS\CombineWar2\Game2D\bin\Debug\OpenTK.xml
 D:\misha\_PROJECTS\CombineWar2\Game2D\bin\Debug\OpenTK.GLControl.xml
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\OpenTK.dll
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\OpenTK.GLControl.dll
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\OpenTK.pdb
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\OpenTK.xml
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\OpenTK.GLControl.xml
+C:\Users\LightRay\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.GameForm.resources
+C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\obj\x86\Debug\Game2D.GameForm.resources
+C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\OpenTK.dll
+C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\OpenTK.GLControl.dll
+C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\OpenTK.pdb
+C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\OpenTK.xml
+C:\Users\Brandstein\Dropbox\Denis\CombineWar2\Game2D\bin\Debug\OpenTK.GLControl.xml

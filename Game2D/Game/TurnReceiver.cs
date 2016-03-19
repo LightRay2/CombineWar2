@@ -418,6 +418,7 @@ namespace Game2D.Game
         {
             var state = _currentStateInSecondThread;
             int turnWithExceptionCount = 0;
+            GameForm.GameInSecondThreadIsRunning = true;
             while (!state.IsFinished)
             {
 
@@ -429,16 +430,16 @@ namespace Game2D.Game
                 if (secondPlayerTurn != null && secondPlayerTurn.TurnStatus == ExternalProgramExecuteResult.InternalError)
                     turnWithExceptionCount++;
 
-                bool stopGame = false;
+                bool stopGame = GameForm.UserWantsToClose;
                 if (turnWithExceptionCount >= 2)
                 {
                     
-                   var dialogResult =  MessageBox.Show("Внешняя программа несколько раз завершилась с ошибкой. Выберите: остановить, продолжить до следующей ошибки, продолжить до конца игры", "Внимание", MessageBoxButtons.YesNoCancel);
-                   if (dialogResult == DialogResult.Yes)
+                   var dialogResult =  MessageBox.Show("Внешняя программа несколько раз завершилась с ошибкой. Остановить игру? Да = остановить, Нет = продолжить до следующей ошибки, Отмена = продолжить до конца игры, не обращая внимания на ошибки", "Внимание", MessageBoxButtons.YesNoCancel);
+                   if (dialogResult == DialogResult.No)
                    {
                        turnWithExceptionCount = 1;
                    }
-                   else if (dialogResult == DialogResult.No)
+                   else if (dialogResult == DialogResult.Yes)
                    {
                        stopGame = true;
                    }
@@ -462,6 +463,8 @@ namespace Game2D.Game
                 if (state.turn == Const.NumberOfTurns || stopGame)
                     state.IsFinished = true;
             }
+
+            GameForm.GameInSecondThreadIsRunning = false;
 
             //сохраним игру полностью
             string file = startTime.ToString("yy-MM-dd-hh-mm-ss")

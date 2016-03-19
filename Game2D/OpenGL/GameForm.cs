@@ -12,13 +12,19 @@ namespace Game2D
 {
     public partial class GameForm : Form
     {
-       
+        public static bool UserWantsToClose = false;
+        public static bool GameInSecondThreadIsRunning = false;
         public GameForm()
         {
             
             InitializeComponent();
         }
 
+        //чтобы стрелки работали
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            return false;
+        }
 
         private void GameForm_Load(object sender, EventArgs e)
         {
@@ -32,6 +38,15 @@ namespace Game2D
             this.Size = new Size(w, h);
 
              GameController _mainController = new GameController(glControl1, this);
+        }
+
+        private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!UserWantsToClose)
+            {
+                UserWantsToClose = true;
+                e.Cancel = true;
+            }
         }
 
 

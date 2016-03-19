@@ -28,6 +28,14 @@ namespace Game2D.Game.DrawableObjects.Animations
             }
         }
 
+        public double InnerAnimationStage
+        {
+            get
+            {
+                return innerAnimationStage;
+            }
+        }
+
         // stage of animation beginning relative to the last animation or 0.0 in case of the first animation
         // assigning to this property lead to changing of finishStage according to duration
         public double StartStage
@@ -95,7 +103,7 @@ namespace Game2D.Game.DrawableObjects.Animations
                 lastStage = stage;*/
                 return;
             }
-            double innerAnimationStage = (stage - StartStage + turnCounter) / Duration;
+            innerAnimationStage = (stage - StartStage + turnCounter) / Duration;
             if (Utility.doubleEqual(StartStage - turnCounter, stage))
                 innerAnimationStage = 0.0;
             if (Utility.doubleGreaterOrEqual(innerAnimationStage, 1.0))
@@ -120,6 +128,7 @@ namespace Game2D.Game.DrawableObjects.Animations
             lastStage = stage;
         }
 
+        double innerAnimationStage;
         double duration;
         double startStage;
         double finishStage;

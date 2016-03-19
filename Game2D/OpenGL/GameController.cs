@@ -9,6 +9,7 @@ using OpenTK;
 using Game2D.Opengl;
 using Game2D.Game;
 using Game2D;
+using OpenTK.Graphics;
 
 namespace Game2D
 {
@@ -31,13 +32,15 @@ namespace Game2D
             _parentForm = gameForm;
             this.control = control;
             _keyboardState = new KeyboardState();
-            GlInput.Init(gameForm, control);
+            //GlInput.Init(gameForm, control); класс сыроват, пока лучше его не использовать
 
+            GraphicsContext.CurrentContext.VSync = true;
             //keyboard support
             _windowWidth = control.Width;
             _windowHeight = control.Height;
             control.MouseMove += new MouseEventHandler((o, e) => PassiveMotion(e.X, e.Y));
             control.MouseClick += new MouseEventHandler((o, e) => _keyboardState.MouseClick = true);
+            _parentForm.KeyPreview = true;
             _parentForm.KeyDown += new KeyEventHandler((o, e) => { try { _keyboardState.KeyPress((byte)e.KeyValue); } catch { } });
             _parentForm.KeyUp += new KeyEventHandler((o, e) => { try { _keyboardState.KeyUp((byte)e.KeyValue); } catch { } });
             //------
@@ -65,7 +68,7 @@ namespace Game2D
             if (!previousStateDrawed) return; //если вдруг не успели отрисоваться за время кадра, подождем следующего тика
              previousStateDrawed = false;
 
-            GlInput.EveryFrameStartRefresh();
+         //   GlInput.EveryFrameStartRefresh();
             Frame  frame = _game.Process(_keyboardState);
             if (frame == null)
             {
@@ -74,7 +77,7 @@ namespace Game2D
             }
             FramePainter.DrawFrame(frame, _textureCodes);
             control.SwapBuffers();
-
+            _keyboardState.StepEnded();
             previousStateDrawed = true; //справились с рисованием
         }
 

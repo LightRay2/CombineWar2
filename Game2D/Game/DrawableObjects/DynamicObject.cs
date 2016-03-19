@@ -111,6 +111,22 @@ namespace Game2D.Game.DrawableObjects
             return start;
         }
 
+        public ESprite CurrentSprite
+        {
+            get
+            {
+                return currentSprite.name;
+            }
+        } 
+
+        public double CurrentInnerStage
+        {
+            get
+            {
+                return movingAnimations.CurrentInnerStage;
+            }
+        }
+
         public double GetAnimationsFinish()
         {
             double finish = double.MinValue;

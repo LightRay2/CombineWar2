@@ -45,7 +45,11 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.управлениеСКлавиатурыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnAddReplay = new System.Windows.Forms.Button();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +96,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "Исполняемые файлы|*.exe";
+            this.openFileDialog1.Filter = "Исполняемые файлы|*.exe;*.jar";
             // 
             // btnPlayer1
             // 
@@ -132,16 +136,16 @@
             this.label3.Location = new System.Drawing.Point(29, 72);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 20);
+            this.label3.Size = new System.Drawing.Size(181, 20);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Выберите игроков:";
+            this.label3.Text = "Выберите игроков или";
             // 
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(42, 375);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.trackBar1.Maximum = 20;
-            this.trackBar1.Minimum = 1;
+            this.trackBar1.Minimum = 3;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(322, 45);
             this.trackBar1.TabIndex = 13;
@@ -188,7 +192,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(302, 38);
             this.button3.TabIndex = 22;
-            this.button3.Text = "Добавить в список (0)";
+            this.button3.Text = "Добавить в список игр (0)";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -205,13 +209,22 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.управлениеСКлавиатурыToolStripMenuItem,
             this.оПрограммеToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1144, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1144, 29);
             this.menuStrip1.TabIndex = 25;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // управлениеСКлавиатурыToolStripMenuItem
+            // 
+            this.управлениеСКлавиатурыToolStripMenuItem.Name = "управлениеСКлавиатурыToolStripMenuItem";
+            this.управлениеСКлавиатурыToolStripMenuItem.Size = new System.Drawing.Size(215, 25);
+            this.управлениеСКлавиатурыToolStripMenuItem.Text = "Управление с клавиатуры...";
+            this.управлениеСКлавиатурыToolStripMenuItem.Click += new System.EventHandler(this.управлениеСКлавиатурыToolStripMenuItem_Click);
             // 
             // оПрограммеToolStripMenuItem
             // 
@@ -220,10 +233,26 @@
             this.оПрограммеToolStripMenuItem.Text = "О программе...";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
+            // btnAddReplay
+            // 
+            this.btnAddReplay.Location = new System.Drawing.Point(220, 68);
+            this.btnAddReplay.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnAddReplay.Name = "btnAddReplay";
+            this.btnAddReplay.Size = new System.Drawing.Size(302, 29);
+            this.btnAddReplay.TabIndex = 26;
+            this.btnAddReplay.Text = "Добавьте файл с повтором игры";
+            this.btnAddReplay.UseVisualStyleBackColor = true;
+            this.btnAddReplay.Click += new System.EventHandler(this.btnAddReplay_Click);
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            // 
             // FormMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1144, 469);
+            this.Controls.Add(this.btnAddReplay);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnPlayer2);
@@ -243,7 +272,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "FormMain";
-            this.Text = "Magic Storm";
+            this.Text = "ContestAI";
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -274,5 +303,9 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem управлениеСКлавиатурыToolStripMenuItem;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog2;
+        private System.Windows.Forms.Button btnAddReplay;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }

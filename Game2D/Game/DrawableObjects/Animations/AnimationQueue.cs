@@ -91,6 +91,14 @@ namespace Game2D.Game.DrawableObjects.Animations
             queue.Peek().MakePermanent();
         }
 
+        public double CurrentInnerStage
+        {
+            get
+            {
+                return currentAnimation.InnerAnimationStage;
+            }
+        }
+
         double startStage = -1;
         double finishStage = -1;
         Queue<Animation> queue = new Queue<Animation>();

@@ -64,7 +64,11 @@ namespace Game2D.Game
 
         public Frame Process(IGetKeyboardState keyboard)
         {
-            if (keyboard.GetActionTime(EKeyboardAction.Esc) == 1) return null;
+            if (keyboard.GetActionTime(EKeyboardAction.Esc) == 1)
+                GameForm.UserWantsToClose = true;
+            if (GameForm.UserWantsToClose && !GameForm.GameInSecondThreadIsRunning)
+                return null;
+
             if (keyboard.GetActionTime(EKeyboardAction.Fire) == 1)
                 PauseButtonPressed = !PauseButtonPressed;
             if (_currentState.IsFinished && keyboard.GetActionTime(EKeyboardAction.Enter) == 1)
@@ -72,7 +76,7 @@ namespace Game2D.Game
                 bool success = TryRunNextGame();
                 if (!success)
                 {
-                    return null;
+                    GameForm.UserWantsToClose = true;
                 }
             }
 

@@ -55,7 +55,7 @@ void easy(){
 			cout << 2 << " " << hor << endl;
 		cout << 1 << " " << hor << " " << rand() % M + 1 << endl;
 	}
-
+	cout << "memory" << prevType;
 }
 
 void normal(){
@@ -348,7 +348,7 @@ void main()
 		}
 	}
 
-	int t = 3; //change it!
+	int t = 0; //change it!
 
 	if (t == 0) easy();
 	else if (t == 1) normal();

@@ -36,152 +36,155 @@ namespace Game2D.Game
         {
             //тут надо все рисовать
             //примерный порядок: сначала фон, затем все IDrawable объекты, затем тексты
-
-            #region remove sprites of dead units
-            for (int n = 0; n < 2; n++)
+            try
             {
-                for (int i = 0; i < Const.NumberOfLines; i++)
+                #region remove sprites of dead units
+                for (int n = 0; n < 2; n++)
                 {
-                    Unit unit = state.players[n].Units[i];
-                    if (unit == null)
-                        continue;
-                    if (unit.State == UnitState.Dead)
+                    for (int i = 0; i < Const.NumberOfLines; i++)
                     {
-                        double deathTime = unit.DeathStage;
-                        if (Utility.doubleGreaterOrEqual(stage - deathTime, 0.35))
+                        Unit unit = state.players[n].Units[i];
+                        if (unit == null)
+                            continue;
+                        if (unit.State == UnitState.Dead)
                         {
-                            foreach (DynamicObject sprite in unit.obj.objs)
+                            double deathTime = unit.DeathStage;
+                            if (Utility.doubleGreaterOrEqual(stage - deathTime, 0.35))
                             {
-                                state.objects.Remove(sprite);
+                                foreach (DynamicObject sprite in unit.obj.objs)
+                                {
+                                    state.objects.Remove(sprite);
+                                }
+                                unit.obj.objs.Clear();
                             }
-                            unit.obj.objs.Clear();
+                            if (Utility.doubleEqual(stage, 1.0) && deathTime > 0.0)
+                                unit.DeathStage -= 1.0;
                         }
-                        if (Utility.doubleEqual(stage, 1.0) && deathTime > 0.0)
-                            unit.DeathStage -= 1.0;
                     }
                 }
-            }
-            #endregion
-            
-            frame.Add(new Sprite(ESprite.background, Const.ScreenWidth, Const.ScreenHeight, new Vector2(Const.ScreenWidth / 2, Const.ScreenHeight / 2)));
-            var drawable = new List<IDrawable>();
-            drawable.AddRange(state.objects);
-            drawable.Add(state.effects);
+                #endregion
 
-            foreach (var d in drawable)
-                d.Draw(ref frame, stage, state.turn);
+                frame.Add(new Sprite(ESprite.background, Const.ScreenWidth, Const.ScreenHeight, new Vector2(Const.ScreenWidth / 2, Const.ScreenHeight / 2)));
+                var drawable = new List<IDrawable>();
+                drawable.AddRange(state.objects);
+                drawable.Add(state.effects);
 
-            double left = Const.FieldOriginX,
-                right = Const.FieldOriginX + Const.TileWidth * (Const.NumberOfColumns + 2),
-                center = (left + right) / 2;
-            string message = state.Message;
-            if (message != null)
-            {
-                frame.Add(new Text(EFont.orange, new Point2(TextX(message, center), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
-                               message));
-            }
-            else
-            {
-                ///счет, деньги, номер хода
+                foreach (var d in drawable)
+                    d.Draw(ref frame, stage, state.turn);
 
-
-                string turn = (Math.Max(0, state.turn - 1)).ToString(),
-                    score0 = state.players[0].Score.ToString(),
-                    score1 = state.players[1].Score.ToString(),
-                    money0 = "-" + (state.players[0].Money-state.players[0].moneySpent).ToString() + "-",
-                    money1 = "-" + (state.players[1].Money - state.players[1].moneySpent).ToString() + "-";
-                frame.Add(new Text(EFont.orange, new Point2(TextX(turn, center), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
-                                   turn));
-                frame.Add(new Text(EFont.green, new Point2(TextX(score0, left + Const.TileWidth / 2), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
-                                   score0));
-                frame.Add(new Text(EFont.red, new Point2(TextX(score1, right - Const.TileWidth / 2), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
-                                   score1));
-                frame.Add(new Text(EFont.green, new Point2(TextX(money0, left + Const.TileWidth * 3), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
-                                   money0));
-                frame.Add(new Text(EFont.red, new Point2(TextX(money1, right - Const.TileWidth * 3), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
-                                   money1));
-            }
-
-
-            int logLineCount  = 22;
-            bool needRectangle = false;
-            if (Game.PauseButtonPressed && state.turnCommentList.Count>0)
-            {
-                 //управление логом
-                if (keyboard.GetActionTime(EKeyboardAction.Fire) == 1){
-                    _copied = false;
-                    _activeLogLine = state.turnCommentList.Count - 1;
-                    _firstLogLine = Math.Max(0,state.turnCommentList.Count - logLineCount);
-                }
-                if (keyboard.GetActionTime(EKeyboardAction.up) == 1)
+                double left = Const.FieldOriginX,
+                    right = Const.FieldOriginX + Const.TileWidth * (Const.NumberOfColumns + 2),
+                    center = (left + right) / 2;
+                string message = state.Message;
+                if (message != null)
                 {
-                    _copied = false;
-                    _activeLogLine = Math.Max(0, _activeLogLine - 5);
-                    if (_activeLogLine < _firstLogLine)
-                        _firstLogLine = _activeLogLine;
+                    frame.Add(new Text(EFont.orange, new Point2(TextX(message, center), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
+                                   message));
                 }
-                if (keyboard.GetActionTime(EKeyboardAction.down) == 1)
+                else
                 {
-                    _copied = false;
-                    _activeLogLine = Math.Min(state.turnCommentList.Count - 1, _activeLogLine + 1);
-                    if (_activeLogLine >= _firstLogLine + logLineCount)
-                        _firstLogLine++;
+                    ///счет, деньги, номер хода
+
+
+                    string turn = (Math.Max(0, state.turn - 1)).ToString(),
+                        score0 = state.players[0].Score.ToString(),
+                        score1 = state.players[1].Score.ToString(),
+                        money0 = "-" + (state.players[0].Money - state.players[0].moneySpent).ToString() + "-",
+                        money1 = "-" + (state.players[1].Money - state.players[1].moneySpent).ToString() + "-";
+                    frame.Add(new Text(EFont.orange, new Point2(TextX(turn, center), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
+                                       turn));
+                    frame.Add(new Text(EFont.green, new Point2(TextX(score0, left + Const.TileWidth / 2), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
+                                       score0));
+                    frame.Add(new Text(EFont.red, new Point2(TextX(score1, right - Const.TileWidth / 2), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
+                                       score1));
+                    frame.Add(new Text(EFont.green, new Point2(TextX(money0, left + Const.TileWidth * 3), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
+                                       money0));
+                    frame.Add(new Text(EFont.red, new Point2(TextX(money1, right - Const.TileWidth * 3), Const.FieldOriginY / 2), Const.smallLetterWidth, Const.smallLetterHeight,
+                                       money1));
                 }
-                if (keyboard.GetActionTime(EKeyboardAction.I) == 1)
+
+
+                int logLineCount = 22;
+                bool needRectangle = false;
+                if (Game.PauseButtonPressed && state.turnCommentList.Count > 0)
                 {
-                    Clipboard.SetText(state.inputList[_activeLogLine]);
-                    _copied = true;
-                }
-                if (keyboard.GetActionTime(EKeyboardAction.O) == 1)
-                {
-                    if (state.players[_activeLogLine % 2].programAddress != null)
+                    //управление логом
+                    if (keyboard.GetActionTime(EKeyboardAction.Fire) == 1)
                     {
-                        Clipboard.SetText(state.outputList[_activeLogLine]);
+                        _copied = false;
+                        _activeLogLine = state.turnCommentList.Count - 1;
+                        _firstLogLine = Math.Max(0, state.turnCommentList.Count - logLineCount);
+                    }
+                    if (keyboard.GetActionTime(EKeyboardAction.up) == 1)
+                    {
+                        _copied = false;
+                        _activeLogLine = Math.Max(0, _activeLogLine - 5);
+                        if (_activeLogLine < _firstLogLine)
+                            _firstLogLine = _activeLogLine;
+                    }
+                    if (keyboard.GetActionTime(EKeyboardAction.down) == 1)
+                    {
+                        _copied = false;
+                        _activeLogLine = Math.Min(state.turnCommentList.Count - 1, _activeLogLine + 1);
+                        if (_activeLogLine >= _firstLogLine + logLineCount)
+                            _firstLogLine++;
+                    }
+                    if (keyboard.GetActionTime(EKeyboardAction.I) == 1)
+                    {
+                        Clipboard.SetText(state.inputList[_activeLogLine]);
                         _copied = true;
                     }
+                    if (keyboard.GetActionTime(EKeyboardAction.O) == 1)
+                    {
+                        if (state.players[_activeLogLine % 2].programAddress != null)
+                        {
+                            Clipboard.SetText(state.outputList[_activeLogLine]);
+                            _copied = true;
+                        }
+                    }
+
+                    needRectangle = true;
                 }
-
-                needRectangle = true;
-            }
-            else{
-                //показываем лог
-                 _firstLogLine = Math.Max(0, state.turnCommentList.Count - logLineCount);
-                
-            }
-
-            int showCount = Math.Min(state.turnCommentList.Count, logLineCount);
-            for (int i = 0; i < showCount; i++)
-            {
-                bool onActive = needRectangle && (_firstLogLine + i == _activeLogLine);
-                string text = String.Format("{0}. {1}", (_firstLogLine + i)/2, state.turnCommentList[_firstLogLine + i]);
-                if (onActive && _copied)
-                    text = "Cкопировано";
-                var font = (_firstLogLine + i) % 2 == 0 ? EFont.green : EFont.red;
-                var pos = new Point2(right + 20, 24 + i * 12);
-                if (onActive) 
-                    RectangleAroundText(ref frame, pos, text);
-                frame.Add(new Text(font, pos, Const.smallLetterWidth, Const.smallLetterHeight,text));
-
-            }
-
-            //hp
-            for (int line = 0; line < Const.NumberOfLines; line++)
-            {
-                if (state.players[0].Units[line] != null )
+                else
                 {
-                    var dict = state.players[0].Units[line].HpDuringTurn;
-                    var hp = dict.OrderBy(x => x.Key).Last(x => Utility.doubleGreaterOrEqual( stage,x.Key )).Value;
-                    TextInCell(ref frame, EFont.green, Math.Max(0,hp).ToString(), 0, line);
-                }
-                if (state.players[1].Units[line] != null )
-                {
-                    var dict = state.players[1].Units[line].HpDuringTurn;
-                    var hp = dict.OrderBy(x => x.Key).Last(x => Utility.doubleGreaterOrEqual(stage, x.Key)).Value;
-                    TextInCell(ref frame, EFont.red, Math.Max(0,hp).ToString(), Const.NumberOfColumns + 1, line);
-                }
-            }
+                    //показываем лог
+                    _firstLogLine = Math.Max(0, state.turnCommentList.Count - logLineCount);
 
-            //int mouseLine, mousePosition;
+                }
+
+                int showCount = Math.Min(state.turnCommentList.Count, logLineCount);
+                for (int i = 0; i < showCount; i++)
+                {
+                    bool onActive = needRectangle && (_firstLogLine + i == _activeLogLine);
+                    string text = String.Format("{0}. {1}", (_firstLogLine + i) / 2, state.turnCommentList[_firstLogLine + i]);
+                    if (onActive && _copied)
+                        text = "Cкопировано";
+                    var font = (_firstLogLine + i) % 2 == 0 ? EFont.green : EFont.red;
+                    var pos = new Point2(right + 20, 24 + i * 12);
+                    if (onActive)
+                        RectangleAroundText(ref frame, pos, text);
+                    frame.Add(new Text(font, pos, Const.smallLetterWidth, Const.smallLetterHeight, text));
+
+                }
+
+                //hp
+                for (int line = 0; line < Const.NumberOfLines; line++)
+                {
+                    if (state.players[0].Units[line] != null)
+                    {
+                        var dict = state.players[0].Units[line].HpDuringTurn;
+                        var hp = dict.OrderBy(x => x.Key).Last(x => Utility.doubleGreaterOrEqual(stage, x.Key)).Value;
+                        TextInCell(ref frame, EFont.green, Math.Max(0, hp).ToString(), 0, line);
+                    }
+                    if (state.players[1].Units[line] != null)
+                    {
+                        var dict = state.players[1].Units[line].HpDuringTurn;
+                        var hp = dict.OrderBy(x => x.Key).Last(x => Utility.doubleGreaterOrEqual(stage, x.Key)).Value;
+                        TextInCell(ref frame, EFont.red, Math.Max(0, hp).ToString(), Const.NumberOfColumns + 1, line);
+                    }
+                }
+
+                //int mouseLine, mousePosition;
                 //if (TurnReceiver.GetCellUnderMouse(keyboard, out mouseLine, out mousePosition))
                 //{
                 //    if (state.players[0].Units[mouseLine] != null)
@@ -194,10 +197,16 @@ namespace Game2D.Game
                 //    }
                 //}
 
-           
+
 
                 UpdateStage();
 
+            }
+            catch (Exception)
+            {
+
+            }
+              
             return frame;
         }
 

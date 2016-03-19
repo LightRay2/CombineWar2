@@ -49,6 +49,7 @@
             this.Controls.Add(this.glControl1);
             this.Name = "GameForm";
             this.Text = "GameForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameForm_FormClosing);
             this.Load += new System.EventHandler(this.GameForm_Load);
             this.ResumeLayout(false);
 
