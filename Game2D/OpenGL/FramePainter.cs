@@ -5,11 +5,22 @@ using System.Text;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using Game2D;
+using System.Drawing;
 
 namespace Game2D
 {
     class FramePainter
     {
+        private static double brightenFactor=1;
+        /// <summary>
+        /// 1.0 - 4.0
+        /// </summary>
+	    public static double BrightenFactor
+	    {
+		    get { return brightenFactor;}
+		    set { brightenFactor = Math.Min(4, Math.Max(1,value));}
+	    }
+
         public static void DrawFrame(Frame frame, Dictionary<string, int> spriteCodes)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
@@ -67,6 +78,9 @@ namespace Game2D
 
         private static void DrawTexture(Sprite sprite, int textureCode)
         {
+            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+
+            GL.Color4(Color.White);
             // if (IsSpriteOutScreen(sprite)) return; наверное опенгл и сам это делает
 
             int hor = Config.Sprites[sprite.texture].horFrames;
@@ -93,6 +107,37 @@ namespace Game2D
             GL.Vertex2(-sprite.width / 2, sprite.height / 2);
             GL.End();
 
+            GL.BlendFunc(BlendingFactorSrc.DstColor, BlendingFactorDest.One);
+            
+            double bright = Math.Min(2,brightenFactor) -1;
+            GL.Color4(ColorByBright(bright));
+            GL.Begin(PrimitiveType.Quads);
+            // указываем поочередно вершины и текстурные координаты
+            GL.Vertex2(-sprite.width / 2, -sprite.height / 2);
+            GL.Vertex2(sprite.width / 2, -sprite.height / 2);
+            GL.Vertex2(sprite.width / 2, sprite.height / 2);
+            GL.Vertex2(-sprite.width / 2, sprite.height / 2);
+            GL.End();
+
+            if (brightenFactor > 2)
+            {
+
+                GL.Color4(ColorByBright((BrightenFactor-2)/2));
+                GL.Begin(PrimitiveType.Quads);
+                // указываем поочередно вершины и текстурные координаты
+                GL.Vertex2(-sprite.width / 2, -sprite.height / 2);
+                GL.Vertex2(sprite.width / 2, -sprite.height / 2);
+                GL.Vertex2(sprite.width / 2, sprite.height / 2);
+                GL.Vertex2(-sprite.width / 2, sprite.height / 2);
+                GL.End();
+            }
+
+        }
+
+        static Color ColorByBright(double e)
+        {
+            int x = 1+(int)(253*e);
+            return Color.FromArgb(255, x, x, x);
         }
 
     }

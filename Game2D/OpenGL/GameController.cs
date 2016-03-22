@@ -38,6 +38,7 @@ namespace Game2D
             //keyboard support
             _windowWidth = control.Width;
             _windowHeight = control.Height;
+            _parentForm.Text = Config.WindowName;
             control.MouseMove += new MouseEventHandler((o, e) => PassiveMotion(e.X, e.Y));
             control.MouseClick += new MouseEventHandler((o, e) => _keyboardState.MouseClick = true);
             _parentForm.KeyPreview = true;

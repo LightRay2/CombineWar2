@@ -32,6 +32,7 @@ namespace Game2D.Game
         /// не использовать
         /// </summary>
         public string lastOpenFileDialog;
+        public int Brightness;
 
         public void AddToList(List<ParamsFromMainFormToGame> list)
         {

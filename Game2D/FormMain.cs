@@ -43,6 +43,7 @@ namespace MagicStorm
                 currentGame.secondProgramAddress = edtPlayer2.Text;
                 currentGame.lastOpenFileDialog = openFileDialog1.FileName;
                 currentGame.replayPath = openFileDialog2.FileName;
+                currentGame.Brightness = trackBar2.Value ;
                 if(javaPath != null)
                     currentGame.javaPath = javaPath;
                 Utility.TryWriteToXmlFile<ParamsFromMainFormToGame>(Application.StartupPath + "//config.cfg", currentGame);
@@ -65,7 +66,7 @@ namespace MagicStorm
                 
                 //   cbHistory.Checked = bool.Parse(ss[2]);
                 trackBar1.Value = currentGame.AnimationSpeedInPercent/10;
-
+                trackBar2.Value = currentGame.Brightness;
                 
                 edtPlayer1.Text = currentGame.firstProgramAddress ?? "";
                 edtPlayer2.Text = currentGame.secondProgramAddress ?? "";
@@ -310,6 +311,13 @@ namespace MagicStorm
                 RefreshListButtonText();
             }
         }
+
+        private void trackBar2_ValueChanged(object sender, EventArgs e)
+        {
+            FramePainter.BrightenFactor = trackBar2.Value /2.0;
+            SaveConfig();
+        }
+
 
         
 

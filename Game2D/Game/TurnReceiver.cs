@@ -463,7 +463,7 @@ namespace Game2D.Game
                 if (state.turn == Const.NumberOfTurns || stopGame)
                     state.IsFinished = true;
             }
-
+            Thread.Sleep(500); //чтобы удалить темп, надо подождать, пока программы отдадут права на редактирование директории
             GameForm.GameInSecondThreadIsRunning = false;
 
             //сохраним игру полностью
