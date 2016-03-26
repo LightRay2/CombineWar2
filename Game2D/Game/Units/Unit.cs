@@ -244,6 +244,8 @@ namespace Game2D.Game.Units
                 speed = Const.TileWidth;
             else
                 speed = -Const.TileWidth;
+            if (!IsMoving())
+                speed = 0.0;
             ret += speed * stage;
             return ret;
         }
